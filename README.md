@@ -10,7 +10,7 @@ This template includes:
 
 ## TODO
 
-* husky
 * conventional_commits_linter
+* tracing
 
 MIT License

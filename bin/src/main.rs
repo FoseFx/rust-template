@@ -22,7 +22,7 @@
     clippy::undocumented_unsafe_blocks,
     clippy::unimplemented,
     clippy::unneeded_field_pattern,
-    clippy::unseparated_literal_suffix,
+    clippy::unseparated_literal_suffix
 )]
 #![warn(clippy::pedantic)]
 
