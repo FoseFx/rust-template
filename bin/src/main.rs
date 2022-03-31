@@ -26,11 +26,36 @@
 )]
 #![warn(clippy::pedantic)]
 
+#[macro_use]
+extern crate tracing;
+
+use tracing::subscriber::set_global_default;
+use tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer};
+use tracing_log::LogTracer;
+use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
+
 fn main() {
-    println!("Hello, {}!", sample());
+    LogTracer::init().expect("Could not setup LogTracer"); // "log" compat
+
+    // use stdout for tracing_subscriber::fmt and stderr for bunyan formatted logs
+    let sub = Registry::default()
+        .with(EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")))
+        .with(JsonStorageLayer)
+        .with(BunyanFormattingLayer::new(
+            "app_name".into(),
+            std::io::stderr,
+        ))
+        .with(tracing_subscriber::fmt::layer());
+
+    set_global_default(sub).expect("Setting global logger default");
+    info!("Logger set up");
+
+    info!("Hello, {}!", sample());
 }
 
+#[instrument]
 fn sample() -> String {
+    debug!("Returning sample");
     "sample".to_string()
 }
 
