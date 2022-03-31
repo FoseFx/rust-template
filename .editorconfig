@@ -1,0 +1,11 @@
+root = true
+
+# Rust Style Guide
+# see: https://github.com/rust-dev-tools/fmt-rfcs/blob/master/guide/guide.md#rust-style-guide
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 4
