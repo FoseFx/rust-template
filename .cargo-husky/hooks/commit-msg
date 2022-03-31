@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+if [ -f "target/conventional_commits_linter" ]; then
+    echo "conventional_commits_linter found"
+else
+    cd target
+    wget https://gitlab.com/DeveloperC/conventional_commits_linter/-/jobs/artifacts/bin-0.12.1/download?job=release-binary-compiling-x86_64-linux-musl -q -O conventional_commits_linter.zip
+    unzip conventional_commits_linter.zip
+    chmod +x conventional_commits_linter
+    cd ..
+fi
+cat "${1}" | ./target/conventional_commits_linter --from-stdin --allow-angular-type-only

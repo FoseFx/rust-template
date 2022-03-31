@@ -11,4 +11,4 @@ license = "MIT"
 [dev-dependencies.cargo-husky]
 version = "1"
 default-features = false
-features = ["run-for-all", "precommit-hook", "run-cargo-test", "run-cargo-clippy", "run-cargo-fmt"]
+features = ["run-for-all", "user-hooks"]
