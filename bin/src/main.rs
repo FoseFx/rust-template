@@ -1,3 +1,4 @@
+#![feature(lint_reasons)]
 #![deny(clippy::all)]
 #![deny(
     clippy::as_conversions,
@@ -23,11 +24,14 @@
     clippy::unimplemented,
     clippy::unneeded_field_pattern,
     clippy::unseparated_literal_suffix,
+    clippy::unwrap_used,
+    clippy::allow_attributes_without_reason
 )]
 #![warn(clippy::pedantic)]
 
 fn main() {
-    println!("Hello, {}!", sample());
+    let test = #[allow(clippy::unwrap_used), reason = "It's always some"] Some("test").unwrap();
+    println!("Hello, {}! {}", sample(), test);
 }
 
 fn sample() -> String {
