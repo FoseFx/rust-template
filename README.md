@@ -10,9 +10,6 @@ This template includes:
 * cargo-husky running tests and lints
 * conventional_commits_linter
 * tokio/tracing and bunyan
-
-## TODO
-
-* Dockerfile
+* Docker
 
 MIT License
